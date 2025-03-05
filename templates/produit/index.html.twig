@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ produit.nom }}</h5>
                         <p class="card-text">Prix : {{ produit.prix }}€</p>
-                        <a class="btn btn-info text-white" href="{{ path('ajouter_panier', {'id': produit.id}) }}">
+                        <a class="btn btn-info text-white btn-ajouter-panier" href="{{ path('ajouter_panier', {'id': produit.id}) }}">
                             Ajouter au panier
                         </a>
                     </div>

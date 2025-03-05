@@ -9,7 +9,7 @@
     </div>
 
     {% if panier is empty %}
-        <div class="alert alert-warning text-center">Votre panier est vide.</div>
+        <div class="alert alert-warning text-center message-panier-vide">Votre panier est vide.</div>
     {% else %}
         <div class="table-responsive">
             <table class="table table-striped text-center">
@@ -24,9 +24,9 @@
                     {% for produit in panier %}
                         <tr>
                             <td>{{ produit.nom }}</td>
-                            <td>{{ produit.prix }}€</td>
+                            <td class="prix">{{ produit.prix }}€</td>
                             <td>
-                                <a class="btn btn-danger btn-sm" href="{{ path('supprimer_panier', {'index': loop.index0}) }}">
+                                <a class="btn btn-danger btn-sm btn-supprimer-panier" href="{{ path('supprimer_panier', {'index': loop.index0}) }}">
                                     Supprimer
                                 </a>
                             </td>
@@ -36,7 +36,7 @@
             </table>
         </div>
 
-        <p class="text-end fs-5"><strong>Total : {{ total }}€</strong></p>
+        <p id="total" class="text-end fs-5"><strong>Total : {{ total }}€</strong></p>
     {% endif %}
 </div>
 
