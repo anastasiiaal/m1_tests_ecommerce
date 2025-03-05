@@ -1,22 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="example-wrapper">
-    <h1>Votre Panier</h1>
-    <a href="{{ path('produit_index') }}">Retour à la boutique</a>
+<div class="container my-4">
+    <h1 class="text-center mb-4">Votre Panier</h1>
+
+    <div class="text-center mb-4">
+        <a class="btn btn-primary" href="{{ path('produit_index') }}">Retour à la boutique</a>
+    </div>
 
     {% if panier is empty %}
-        <p>Votre panier est vide.</p>
+        <div class="alert alert-warning text-center">Votre panier est vide.</div>
     {% else %}
-        <ul>
-            {% for produit in panier %}
-                <li>
-                    {{ produit.nom }} - {{ produit.prix }}€
-                    <a href="{{ path('supprimer_panier', {'index': loop.index0}) }}">Supprimer</a>
-                </li>
-            {% endfor %}
-        </ul>
-        <p><strong>Total : {{ total }}€</strong></p>
+        <div class="table-responsive">
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Prix</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produit in panier %}
+                        <tr>
+                            <td>{{ produit.nom }}</td>
+                            <td>{{ produit.prix }}€</td>
+                            <td>
+                                <a class="btn btn-danger btn-sm" href="{{ path('supprimer_panier', {'index': loop.index0}) }}">
+                                    Supprimer
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <p class="text-end fs-5"><strong>Total : {{ total }}€</strong></p>
     {% endif %}
 </div>
+
 {% endblock %}
